@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}HealthOne | Home{% endblock %}
+{% block body %}
+    <div class="container">
+        <header>
+            <div class="header-row lead" >
+                <h1 class="display-3">Health<span class="text-danger">One</span></h1>
+
+            </div>
+        </header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ path('homepage') }}">Sportcenter</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">sportapparaten </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">registreren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">contact</a>
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">inloggen</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <figure>
+            <img alt="banner" class="img-fluid banner-img" src={{ asset('img/healthone-wide.png')}} />
+        </figure>
+        <h4>Sportcenter HealthOne</h4>
+        Fit en gezond zijn is geen vanzelfsprekendheid. We moeten er zelf wat voor doen. Goede, gezonde voeding is hiervoor de basis.
+        Bewegen hoort hier ook bij. Regelmatig bewegen zorgt voor een goede doorbloeding en draagt bij aan ontspanning van lichaam en geest.
+        Sporten is goed voor sterkere spieren en voor de conditie. Sporcenter HealthOne heeft verschillende sportapparaten om mee te kunnen werken aan je conditie.
+
+        <hr>
+        <footer>
+                <i class="bi bi-linkedin float-right img-thumbnail "   ></i>
+                <i class="bi bi-twitter float-right img-thumbnail "   ></i>
+                <i class="bi bi-pinterest float-right img-thumbnail "  ></i>
+
+                <p class="clear pb-3  text-muted text-center">&copy;Afdeling software development Tinwerf 10, 2544 ED Den Haag.</p>
+        </footer>
+    </div>
+{%  endblock %}
