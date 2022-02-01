@@ -39,18 +39,37 @@
         <figure>
             <img alt="banner" class="img-fluid banner-img" src={{ asset('img/healthone-wide.png')}} />
         </figure>
-        <h4>Sportcenter HealthOne</h4>
-        Fit en gezond zijn is geen vanzelfsprekendheid. We moeten er zelf wat voor doen. Goede, gezonde voeding is hiervoor de basis.
-        Bewegen hoort hier ook bij. Regelmatig bewegen zorgt voor een goede doorbloeding en draagt bij aan ontspanning van lichaam en geest.
-        Sporten is goed voor sterkere spieren en voor de conditie. Sporcenter HealthOne heeft verschillende sportapparaten om mee te kunnen werken aan je conditie.
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('categories') }}">Categories</a></li>
+            </ol>
+        </nav>
+        <div class="row gy-3 ">
+            {% for category in categories %}
+            <div class="col-sm-4 col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="{{ path('category',{'id':category.id}) }}">
+                            <img alt="no picure" class="product-img img-responsive center-block" src="{{ asset(category.picture)}}"/>
+                        </a>
+                        <div class="card-title mb-3"> {{ category.name }} </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
         <hr>
-        <footer>
-                <i class="bi bi-linkedin float-right img-thumbnail "   ></i>
-                <i class="bi bi-twitter float-right img-thumbnail "   ></i>
-                <i class="bi bi-pinterest float-right img-thumbnail "  ></i>
 
-                <p class="clear pb-3  text-muted text-center">&copy;Afdeling software development Tinwerf 10, 2544 ED Den Haag.</p>
+        <footer>
+            <i class="bi bi-linkedin float-right img-thumbnail "   ></i>
+            <i class="bi bi-twitter float-right img-thumbnail "   ></i>
+            <i class="bi bi-pinterest float-right img-thumbnail "  ></i>
+
+            <p class="clear pb-3  text-muted text-center">&copy;Afdeling software development Tinwerf 10, 2544 ED Den Haag.</p>
         </footer>
     </div>
 {%  endblock %}
