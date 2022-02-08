@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 01 feb 2022 om 13:41
+-- Gegenereerd op: 08 feb 2022 om 11:06
 -- Serverversie: 10.4.11-MariaDB
 -- PHP-versie: 7.4.5
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `healthone_symfony`
 --
+DROP DATABASE IF EXISTS `healthone_symfony`;
 CREATE DATABASE IF NOT EXISTS `healthone_symfony` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `healthone_symfony`;
 
@@ -65,7 +66,9 @@ CREATE TABLE `doctrine_migration_versions` (
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20220201082047', '2022-02-01 09:21:40', 43),
 ('DoctrineMigrations\\Version20220201082528', '2022-02-01 09:25:32', 42),
-('DoctrineMigrations\\Version20220201084445', '2022-02-01 09:45:13', 84);
+('DoctrineMigrations\\Version20220201084445', '2022-02-01 09:45:13', 84),
+('DoctrineMigrations\\Version20220208091733', '2022-02-08 10:17:50', 38),
+('DoctrineMigrations\\Version20220208092617', '2022-02-08 10:26:27', 93);
 
 -- --------------------------------------------------------
 
@@ -93,6 +96,40 @@ INSERT INTO `product` (`id`, `name`, `picture`, `description`, `category_id`) VA
 (9, 'Crosstrainer - Focus Fitness Senator iPlus', 'categories/crosstrainer/cr5.jpg', 'De strakke Focus Fitness Senator iPlus Crosstrainer biedt je een breed scala aan mogelijkheden en voorziet je van de meest moderne technieken. Zo is de Senator voorzien van een stabiel in totaliteit 67 kg wegend frame en een 12 kg zwaar frontwheel wat zorgt voor een soepele en efficiënte work-out. Of je nu een startende of meer ervaren sporter bent de Senator iPlus biedt je voldoende uitdaging tijdens je training.\r\n', 2),
 (10, 'Crosstrainer - Focus Fitness Fox 5 HRC', 'categories/crosstrainer/cr6.jpg', 'De Focus Fitness Fox 5 HRC is dankzij de zeer hoge kwaliteit en betaalbare prijs niet voor niets een van onze bestverkochte en best beoordeelde crosstrainers. Mede dankzij het vliegwiel van 10 kg zorgt de Fox 5 ervoor dat je altijd op een natuurlijke en soepele manier kunt trainen. Of je de Fox 5 gebruikt voor revalidatie, in beweging wilt blijven of er intensief gebruik van wilt maken. Deze crosstrainer is geschikt voor iedereen! En dat blijkt: in het verleden heeft de Focus Fitness Fox 5 crosstrainer een Kieskeurig Review Award gewonnen dankzij de positieve reviews van consumenten!\r\n', 2);
 
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `review`
+--
+
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` datetime NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stars` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `review`
+--
+
+INSERT INTO `review` (`id`, `name`, `date`, `description`, `stars`, `product_id`) VALUES
+(1, 'Jan van Vliet', '2021-09-15 00:00:00', 'Een prima crosstrainer', 0, 1),
+(2, 'Jan van der Wal', '2021-09-15 00:00:00', 'Crosstrainer is moeilijk verstelbaar', 0, 1),
+(9, 'Peter de Bruin', '2021-09-15 00:00:00', 'Prima apparaat', 0, 1),
+(10, 'Peter de Bruin', '2021-09-15 00:00:00', 'Prima apparaat', 0, 1),
+(11, 'Peter de Bruin', '2021-09-15 00:00:00', 'Prima apparaat', 0, 1),
+(12, 'Pietje ', '2021-09-15 00:00:00', 'Precies', 0, 7),
+(14, 'Klaas de Vries', '2021-09-15 00:00:00', 'Best een prima apparaat', 0, 7),
+(16, 'Jan van Vliet', '2021-09-15 00:00:00', 'Apparaat is niet al te best', 0, 7),
+(41, 'Karel de Weide', '2021-10-26 00:00:00', 'De remote watch werkt prima', 4, 7),
+(42, 'Piet de Niet', '2021-10-27 00:00:00', 'Prima apparaat, je voeten zitten goed vast', 3, 10),
+(43, 'Joris te laat', '2021-10-27 00:00:00', 'Loopt wat zwaar', 2, 10),
+(44, 'Peter Donderdag', '2021-10-28 00:00:00', 'Trapt erg zwaar', 5, 10),
+(46, 'Piet de Niet', '2021-10-28 00:00:00', 'Prima crosstrainer', 4, 1);
+
 --
 -- Indexen voor geëxporteerde tabellen
 --
@@ -117,6 +154,13 @@ ALTER TABLE `product`
   ADD KEY `IDX_D34A04AD12469DE2` (`category_id`);
 
 --
+-- Indexen voor tabel `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_794381C64584665A` (`product_id`);
+
+--
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
@@ -133,6 +177,12 @@ ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT voor een tabel `review`
+--
+ALTER TABLE `review`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
 -- Beperkingen voor geëxporteerde tabellen
 --
 
@@ -141,6 +191,12 @@ ALTER TABLE `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `FK_D34A04AD12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+
+--
+-- Beperkingen voor tabel `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `FK_794381C64584665A` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

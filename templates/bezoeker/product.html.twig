@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+{% block title %}HealthOne | Home{% endblock %}
+{% block body %}
+    <div class="container">
+        <header>
+            <div class="header-row lead" >
+                <h1 class="display-3">Health<span class="text-danger">One</span></h1>
+
+            </div>
+        </header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ path('homepage') }}">Sportcenter</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ path('categories') }}">sportapparaten </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">registreren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">contact</a>
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">inloggen</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <figure>
+            <img alt="banner" class="img-fluid banner-img" src={{ asset('img/healthone-wide.png')}} />
+        </figure>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('categories') }}">Categories</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('category', {'id':product.category.id}) }}">{{ product.category.name }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{  product.name}} </li>
+            </ol>
+        </nav>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" >
+                    <img class="img-fluid center-block" width="200px" src="{{ asset(product.picture)}}"/>
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name }}</h5>
+                        <p class="card-text">{{ product.description}} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <?php foreach ($reviews as $review): ?>
+                {% for review in reviews %}
+                <div class="card">
+                    <div class="card-header">
+                        {{ review.name }}  ({{review.date|date("d-m-Y")  }})
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{ review.description }}</p>
+                            <footer class="blockquote-footer">{{  review.stars }} <cite title="Source Title"> Stars</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                {%endfor %}
+            </div>
+        </div>
+
+        <hr>
+
+        <footer>
+            <i class="bi bi-linkedin float-right img-thumbnail "   ></i>
+            <i class="bi bi-twitter float-right img-thumbnail "   ></i>
+            <i class="bi bi-pinterest float-right img-thumbnail "  ></i>
+
+            <p class="clear pb-3  text-muted text-center">&copy;Afdeling software development Tinwerf 10, 2544 ED Den Haag.</p>
+        </footer>
+    </div>
+{%  endblock %}
