@@ -5,11 +5,10 @@
         <header>
             <div class="header-row lead" >
                 <h1 class="display-3">Health<span class="text-danger">One</span></h1>
-
             </div>
         </header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ path('homepage') }}">Sportcenter</a>
+            <a class="navbar-brand" href="{{ path('member_homepage') }}">Sportcenter</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -20,19 +19,14 @@
                         <a class="nav-link" href="{{ path('categories') }}">sportapparaten </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('app_register')}}">registreren</a>
+                        <a class="nav-link" href="{{ path('member_profile') }}">profiel</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">contact</a>
-                    </li>
-
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('app_login')}}">inloggen</a>
+                        <a class="nav-link" href="{{path('app_logout')}}">uitloggen</a>
                     </li>
                 </ul>
-
             </div>
         </nav>
 
@@ -40,31 +34,13 @@
             <img alt="banner" class="img-fluid banner-img" src={{ asset('img/healthone-wide.png')}} />
         </figure>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ path('homepage') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ path('categories') }}">Categories</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
-            </ol>
-        </nav>
-        <div class="row gy-3  ">
-            {% for product in category.products %}
-                <div class="col-sm-4 col-md-3 col-lg-2 align-items-center">
-                    <div class="card mb-4">
-                        <div class="card-body text-center">
-                            <a href="{{ path('product',{'id':product.id}) }}">
-                                <img alt="no picure" class="product-img img-responsive center-block" src="{{ asset(product.picture)}}"/>
-                            </a>
-                            <div class="card-title mb-3"> {{ product.name }} </div>
-                        </div>
+        {{ form_start(profileForm) }}
+        {{ form_row(profileForm.firstName) }}
+        {{ form_row(profileForm.lastName) }}
 
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
+        <button type="submit" class="btn btn-primary">Update profile!</button>
+        {{ form_end(profileForm) }}
         <hr>
-
         <footer>
             <i class="bi bi-linkedin float-right img-thumbnail "   ></i>
             <i class="bi bi-twitter float-right img-thumbnail "   ></i>
